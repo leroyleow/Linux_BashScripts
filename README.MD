@@ -1,8 +1,9 @@
 # Linux Bash Scripts Collection
 
-[<img src="images/gnu-bash.png" align="right"
+
+<img src="images/gnu-bash.png" align="right"
      alt="Linux Bash Scripts Collection by Leroy Leow Chee Keong" width="120" height="120">
-]
+
 Linux Bash Scripts Collection is a database of bash scripts where each script is intended to solve on daily use cases. Example such as automation of deployment task, checking of server disk health 
 and create a UAR [user access report] 
 
@@ -48,6 +49,5 @@ Script listed in this sections are used for compliance reporting such as generat
 
 Scripts listed here are so call helper functions in programming world 
 <details><summary><b>Show Scripts</b></summary>
-
-
+<a href="/scripts/BashUtilities/password_generator.sh" target="_self">Password Generator</a>
 </details>
