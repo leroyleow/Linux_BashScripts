@@ -24,7 +24,7 @@ and create a UAR [user access report]
 
 Script listed in this sections are targeted for user management area which include automation, reporting. 
 <details><summary><b>Show Scripts</b></summary>
-
+<li><a href="/scripts/UserManagement/usermgt.sh" target="_self">Password Generator</a></li>
 
 </details>
 
@@ -33,6 +33,8 @@ Script listed in this sections are targeted for user management area which inclu
 
 Script listed in this sections are targeted for system management area which include automation, reporting. 
 <details><summary><b>Show Scripts</b></summary>
+<li><a href="/scripts/UserManagement/deply_LAMP.sh" target="_self">Deploy LAMP Stack</a></li>
+<li><a href="/scripts/UserManagement/pingsweep.sh" target="_self">Scan for active host & print their IPs</a></li>
 
 
 </details>
@@ -49,5 +51,9 @@ Script listed in this sections are used for compliance reporting such as generat
 
 Scripts listed here are so call helper functions in programming world 
 <details><summary><b>Show Scripts</b></summary>
-<a href="/scripts/BashUtilities/password_generator.sh" target="_self">Password Generator</a>
+<ul>
+<li><a href="/scripts/BashUtilities/password_generator.sh" target="_self">Password Generator</a></li>
+<li><a href="/scripts/BashUtilities/util_func_demo.sh" target="_self">Utility Functin Demo</a></li>
+<li><a href="/scripts/BashUtilities/util_func.sh" target="_self">Utility Function</a></li>
+</ul>
 </details>
