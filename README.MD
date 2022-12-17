@@ -1,4 +1,4 @@
-# Linux Bash Scripts Collection [![Cult Of Martians][cult-img]][cult]
+# Linux Bash Scripts Collection
 
 [<img src="images/gnu-bash.png" align="right"
      alt="Linux Bash Scripts Collection by Leroy Leow Chee Keong" width="120" height="120">
