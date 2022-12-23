@@ -4,7 +4,7 @@
 <img src="images/gnu-bash.png" align="right"
      alt="Linux Bash Scripts Collection by Leroy Leow Chee Keong" width="120" height="120">
 
-Linux Bash Scripts Collection is a database of bash scripts where each script is intended to solve on daily use cases. Example such as automation of deployment task, checking of server disk health 
+Linux Bash Scripts Collection is a database of bash scripts where each script is intended to solve a daily use cases. Example such as automation of deployment task, checking of server disk health 
 and create a UAR [user access report] 
 
 * scripts are **stand alone** and **no dependencies**.
