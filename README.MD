@@ -25,6 +25,7 @@ and create a UAR [user access report]
 Script listed in this sections are targeted for user management area which include automation, reporting. 
 <details><summary><b>Show Scripts</b></summary>
 <li><a href="/scripts/UserManagement/usermgt.sh" target="_self">User Management Script</a></li>
+<li><a href="/scripts/UserManagement/datasetmkr.sh" target="_self">Dataset Maker</a></li>
 
 </details>
 
@@ -35,6 +36,8 @@ Script listed in this sections are targeted for system management area which inc
 <details><summary><b>Show Scripts</b></summary>
 <li><a href="/scripts/SystemManagement/deploy_LAMP.sh" target="_self">Deploy LAMP Stack</a></li>
 <li><a href="/scripts/SystemManagement/pingsweep.sh" target="_self">Scan for active host & print their IPs</a></li>
+<li><a href="/scripts/SystemManagement/directorytree.sh" target="_self">Print Target in a tree like structure</a></li>
+<li><a href="/scripts/SystemManagement/filededuplicator.sh" target="_self">Removes duplicate files content</a></li>
 
 
 </details>
