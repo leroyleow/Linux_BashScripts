@@ -38,6 +38,7 @@ Script listed in this sections are targeted for system management area which inc
 <li><a href="/scripts/SystemManagement/pingsweep.sh" target="_self">Scan for active host & print their IPs</a></li>
 <li><a href="/scripts/SystemManagement/directorytree.sh" target="_self">Print Target in a tree like structure</a></li>
 <li><a href="/scripts/SystemManagement/filededuplicator.sh" target="_self">Removes duplicate files content</a></li>
+<li><a herf="/scripts/SystemManagement/diskthresholdalert.sh" target="_self">Monitor disk and email when exceed threshold</a></li>
 
 
 </details>
