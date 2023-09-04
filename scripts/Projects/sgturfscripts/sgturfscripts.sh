@@ -4,6 +4,8 @@
 VERSION=1.0.0
 cd
 ############DEFAULTS################
+TURFPATH="$(pwd)/turfscripts"
+export TURFPATH
 #yellow
     YS="\e[1;33m"
 ############FUNCTIONS###############
