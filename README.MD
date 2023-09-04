@@ -61,3 +61,7 @@ Scripts listed here are so call helper functions in programming world
 <li><a href="/scripts/BashUtilities/util_func.sh" target="_self">Utility Function</a></li>
 </ul>
 </details>
+
+
+### Resource
+* To generate awesome banner go to <a href="http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=SGTurF%20Scripts">ANSI Shadow</a>
