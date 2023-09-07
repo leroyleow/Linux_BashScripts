@@ -57,6 +57,15 @@ MENUARRAY=(1:createuser:Create_User
 	2:disableusers:Disable_User
 	3:listusers:List_Users)
 
+#setting frequent stings
+	YNYES="("$CYS"y"$CE"/"$CYS"n"$CE")("$CYS"Enter"$CE"=yes)"
+	YNNO="("$YS"y"$CE"/"$YS"n"$CE")("$YS"Enter"$CE"=no)"
+	YNONLY="("$YS"y"$CE"/"$YS"n"$CE")"
+	PAKT="Press "$YS"any key$CE to"
+	PAKTC="Press "$YS"any key$CE to continue..."
+	PAKTGB="Press "$YS"any key$CE to go back..."
+	TNI=""$RS"Tool is not installed. To install it type '"$CE""$YS"install"$CE""$RS"'."$CE""
+
 ############FUNCTIONS###############
 function banner {
 echo -e ""
@@ -78,9 +87,11 @@ echo -e "$CLCYS=================================================================
 for M in ${MENUARRAY[@]}
 do
 	A=(${M//:/ })
-	#echo -e "$ClCYS ${A[0]})${A[2]//_/ }$CE"
-	echo -e "${A[0]})${A[2]}"
+	echo -e $CYS${A[0]}$CE")"$CWHS${A[2]//_/ }$CE
 done  |xargs -L3 |column -t
+
+echo -e $CYS"0)"$CE$CWHS"Exit"$CE
 }
 
 banner
+
