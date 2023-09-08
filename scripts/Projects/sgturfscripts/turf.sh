@@ -4,7 +4,7 @@
 VERSION=1.0.0
 AUTHOR="Leroy Leow"
 LATESTCHANGELOGLINES=26
-
+TERMINALTITLE="MAIN"
 ############DEFAULTS################
 TURFPATH="$HOME/turf"
 export TURFPATH
@@ -54,7 +54,7 @@ LOGPATH="$HOME/turf/logs"
     fi
 ############Tools###################
 ###function:menu
-MAINMENU=(1:usermenu:User_Menu
+MAINMENU=(1:usermenu:User_Menu:
 	2:logmenu:Log_Menu)
 
 USERMENU=(1:createuser:Create_User
@@ -160,14 +160,17 @@ echo -e "$COL    ╚════██║██║     ██╔══██╗�
 echo -e "$COL    ███████║╚██████╗██║  ██║██║██║        ██║   $CE"                                      
 echo -e "$COL    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   $CE"                                      
 echo -e "$CLCYS====================================================================================$CE"
+}
+function main_menu {
+	TERMINALTITLE="Main"
+	dash_calc
+	for M in ${MAINMENU[@]}
+	do
+		A=(${M//:/ })
+		echo -e $CYS${A[0]}$CE")"$CWHS${A[2]//_/ }$CE
+	done  |xargs -L3 |column -t
 
-for M in ${MAINMENU[@]}
-do
-	A=(${M//:/ })
-	echo -e $CYS${A[0]}$CE")"$CWHS${A[2]//_/ }$CE
-done  |xargs -L3 |column -t
-
-echo -e $CYS"0)"$CE$CWHS"Exit"$CE
+	echo -e $CYS"0)"$CE$CWHS"Exit"$CE
 }
 function main_options {
 	CHOICE=$1
