@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+# https://github.com/mitchellkrogza/linux-server-administration-scripts/blob/master/ftpbackup.sh
+# https://github.com/hwixley/WIX-CLI
+# https://github.com/bobbyiliev/introduction-to-bash-scripting/blob/main/ebook/en/content/019-working-with-cloudflare-api-with-bash.md
+# https://github.com/miguelgfierro/scripts
+
 # set -x # turn off debug
 VERSION=1.0.0
 AUTHOR="Leroy Leow"
