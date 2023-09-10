@@ -54,12 +54,18 @@ LOGPATH="$HOME/turf/logs"
     fi
 ############Tools###################
 ###function:menu
-MAINMENU=(1:usermenu:User_Menu:
-	2:logmenu:Log_Menu)
+MAINMENU=(1:User_Tools
+	2:File_Utilities
+	3:Disk_Utilities
+	4:Application_Log_Tools
+	5:Apach_Tools
+	6:Website_Tests
+	7:Misc_Tools)
 
-USERMENU=(1:createuser:Create_User
-	2:disableusers:Disable_User
-	3:listusers:List_Users)
+USERMENU=(1:Create_User:a_utility_to_create_user
+	2:Disable_User:a_utility_to_disable_user
+	3:List_Users:a_utility_to_list_users
+	4:Main_Menu:main_menu)
 
 LOGMENU=(1:listxdaysapachelogs:List_X_Days_Apache_Logs
 	2:listxdayslumenlogs:List_X_Days_Lumen_Logs
@@ -76,13 +82,14 @@ LOGMENU=(1:listxdaysapachelogs:List_X_Days_Apache_Logs
 	#code to read from keyboard without return
 	READAK="read -n 1"
 
-############FUNCTIONS###############
+############USER FUNCTIONS###############
 function createuser {
 	echo "Please provide a username"
 	red u
 	echo
 	grep -q $u /etc/passwd	#check if user exist
 	if [ $? -eq 0 ]
+	then
 		echo -e $CRS"Error -- User $u already exist"$CE
 		echo -e $CWHS"Please chooese another username"$CE
 		echo
@@ -159,41 +166,95 @@ echo -e "$COL    ███████╗██║     ██████╔╝�
 echo -e "$COL    ╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   $CE"                                      
 echo -e "$COL    ███████║╚██████╗██║  ██║██║██║        ██║   $CE"                                      
 echo -e "$COL    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   $CE"                                      
-echo -e "$CLCYS====================================================================================$CE"
 }
-function main_menu {
-	TERMINALTITLE="Main"
+function build_3col_menu {
+	TERMINALTITLE=$1
 	dash_calc
-	for M in ${MAINMENU[@]}
+	for M in ${@:2}
 	do
 		A=(${M//:/ })
-		echo -e $CYS${A[0]}$CE")"$CWHS${A[2]//_/ }$CE
+		echo -e $CYS${A[0]}$CE")"$CWHS${A[1]//_/}$CE
+		
 	done  |xargs -L3 |column -t
+	
 
 	echo -e $CYS"0)"$CE$CWHS"Exit"$CE
 }
-function main_options {
-	CHOICE=$1
-
-	while 0
+function build_menu {
+	TERMINALTITLE=$1
+	dash_calc
+	for M in ${@:2}
 	do
-		if [[ $CHOICE = "1" ]]
-		do
+		A=(${M//:/ })
+		echo -e $CYS${A[0]}$CE")"$CWHS${A[1]//_/}'-:'$CE$CLPS${A[2]//_/ }$CE
+	done | column -s "-" -t
+}
+function main_options {
 
-		done
-		elif [[ $CHOICE = "2" ]]
-		do
+	
+	case $1 in
+		1)
+		build_menu "User Tools" ${USERMENU[@]}
+		echo -e $CWHS$CE
+		read -p "Enter a number: " CHOICE
+		user_options $CHOICE
+		;;
+		2)
+		echo 'File Utilities'
+		;;
+		3)
+		echo 'Disk Utilities'
+		;;
+		4)
+		echo 'Application Log Tools'
+		;;
+		5)
+		echo 'Apache2 Tools'
+		;;
+		6)
+		echo 'Website Test'
+		;;
+		7)
+		echo 'Misc Tools'
+		;;
+		0)
+		echo 'Exiting'
+		exit 0
+		;;
+	esac
+}
+function user_options {
+	if [[ $1 = 1 ]]
+	then
+		createuser 2 >> /dev/null
+		if [[ $? -eq 0 ]]
+		then
+			build_menu "User Tools" ${USERMENU[@]}
+		       	echo -e $CHW$EC
+			read -p "Entere a number: " CHOICE
+			user_options $CHOICE	
+		else
+			echo -e $CDRS"Error - Invoking createuser" 
+		fi
+	elif [[ $1 = 2 ]]
+	then
+		echo disable user
+	elif [[ $1 = 3 ]]
+	then 
+		echo list users
+	elif [[ $1 = 4 ]]
+	then
+		build_3col_menu "MAIN Menu" ${MAINMENU[@]}
+		read -p 'Enter a number:' CHOICE
+		main_options $CHOICE
+	else
+		echo invalid choice
+	fi
 
-
-		done
-		elif [[ $CHOICE = "0" ]]
-		do
-			echo -e $CLGYS"Exiting now"$CE
-			exit 0
-		done
-
-	done
+		
 }
 #------------------- Main Code --------------------------
 fn_banner
-main_options
+build_3col_menu "Main Menu" ${MAINMENU[@]}
+read -p 'Enter a number:' CHOICE
+main_options $CHOICE
