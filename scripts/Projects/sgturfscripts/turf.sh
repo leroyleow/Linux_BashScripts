@@ -53,7 +53,7 @@ LOGPATH=$MAINPATH/logs
 # setting custom color for logo
     if [[ -f "$LPATH"/settings/logocolor.txt ]]
     then
-        read COL < grep LOGOCOLOR "$LPATH"/settings/logocolor.txt
+        read COL < grep LOGOCOLOR "$MAINPATH"/settings/logocolor.txt
     else
         COL="$CBS"
     fi
@@ -190,19 +190,10 @@ function user_options {
 	if [[ $1 = 1 ]]
 	then
 		fncreateuser 2> /dev/null
-		if [[ $? -eq 0 ]]
-		then
-		       	echo -e $CHW$EC
-			echo -e "User created successfully"
-			build_menu "User Tools" ${USERMENU[@]}
-			read -p "Entere a number: " CHOICE
-			user_options $CHOICE	
-		else
-			echo -e $CDRS"Error - Invoking createuser" 
-		fi
 	elif [[ $1 = 2 ]]
 	then
-		echo disable user
+		fndisableuser 2> /dev/null
+
 	elif [[ $1 = 3 ]]
 	then 
 		echo list users
@@ -214,7 +205,11 @@ function user_options {
 	else
 		echo invalid choice
 	fi
-
+	
+	echo -e $CHW$EC
+	build_menu "User Tools" ${USERMENU[@]}
+	read -p "Entere a number: " CHOICE
+	user_options $CHOICE	
 		
 }
 #------------------- Main Code --------------------------
