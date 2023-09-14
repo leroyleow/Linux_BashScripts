@@ -12,10 +12,9 @@ AUTHOR="Leroy Leow"
 LATESTCHANGELOGLINES=26
 TERMINALTITLE="MAIN"
 ############DEFAULTS################
-TURFPATH="$HOME/turf"
-export TURFPATH
+MAINPATH=$(dirname "$0")
+LOGPATH=$MAINPATH/logs
 
-LOGPATH="$HOME/turf/logs"
 
 #yellow
     CYS="\e[1;33m"
@@ -88,53 +87,11 @@ LOGMENU=(1:listxdaysapachelogs:List_X_Days_Apache_Logs
 	#code to read from keyboard without return
 	READAK="read -n 1"
 
-############USER FUNCTIONS###############
-function createuser {
-	echo "Please provide a username"
-	red u
-	echo
-	grep -q $u /etc/passwd	#check if user exist
-	if [ $? -eq 0 ]
-	then
-		echo -e $CRS"Error -- User $u already exist"$CE
-		echo -e $CWHS"Please chooese another username"$CE
-		echo
-		return 1
-	fi
-	echo -e $CHWS"Please provide user description"$CE
-	read d
-	echo
+	
+############FUNCTIONS REFERENCE###############
+source $MAINPATH/userfunctions.sh
 
-	echo $YNNO"Do you want to specify user ID?"
-	read ynu
-	echo
-
-	if [[ $ynu = "y" ]]
-	then
-		echo "Please enter UID?"
-		read uid
-
-		grep $uid /etc/passwd
-		if [[ $? -eq 0 ]]
-		then
-			echo -e $CRS"ERROR -- UserId $uid already exist"
-			echo
-			return 1
-		else
-			useradd $u -c "$d" -u $uid
-			echo
-			echo -e $CGNS" $u account has been created"$CE
-		fi
-	elif [[ $ynu = "n" ]]
-	then
-		echo No worries we will auto assign a UID
-		useradd $u -e "$d"
-		echo $u account has been created 
-	else
-		echo Invalid choice
-		return 1
-	fi
-}
+############MISC FUNCTIONS###############
 function fn_latest_changelog {
 	echo -e $CWHS"Latest CHANGELOG ["$VERSION"]"$CE
 	echo -e " What is included in this update: "
@@ -232,11 +189,12 @@ function main_options {
 function user_options {
 	if [[ $1 = 1 ]]
 	then
-		createuser 2 >> /dev/null
+		fncreateuser 2> /dev/null
 		if [[ $? -eq 0 ]]
 		then
-			build_menu "User Tools" ${USERMENU[@]}
 		       	echo -e $CHW$EC
+			echo -e "User created successfully"
+			build_menu "User Tools" ${USERMENU[@]}
 			read -p "Entere a number: " CHOICE
 			user_options $CHOICE	
 		else
