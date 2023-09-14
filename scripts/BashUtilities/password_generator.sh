@@ -13,6 +13,6 @@ echo "====================================="
 for index in {1..5};
 do
     # using openssl to generate a random base64 number, taking all the 48 numbers , then password base on length
-    openssl rand -base64 48 | cut -c1.${PASSWDLEN}
+    openssl rand -base64 48 | cut -c 1-${PASSWDLEN}
 done
 
