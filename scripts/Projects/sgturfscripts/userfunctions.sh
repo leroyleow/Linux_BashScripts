@@ -1,13 +1,14 @@
 #!/bin/bash
 
 function fncreateuser {
+echo "==========Create User========="
 echo "Please provide a username" 
 read u
 echo
 grep -q $u /etc/passwd
 if [ $? = 0 ]
 then
-	echo -e "ERROR -- Username $u already exists"
+	echo -e $CRS"ERROR -- Username $u already exists"$CE
 	return 1
 fi
 echo -e "Please provide user description"
@@ -26,10 +27,10 @@ then
 	grep $uid /etc/passwd
 	if [ $? = 0 ]
 	then
-		echo -e "ERROR -- Userid $uid already exists"
+		echo -e $CRS"ERROR -- Userid $uid already exists"$CE
 		return 1
 	else
-		useradd $u -c "$d" -u $uid
+		sudo useradd $u -c "$d" -u $uid
 		echo
 		echo -e "$u account has been created. Please run passwd cmd to set passwd"
 		return 0
@@ -37,7 +38,7 @@ then
 elif [[ "${ynu,,}" = "n" ]] 
 then
 	echo No Worries we will auto assign a UID
-	useradd $u -c "$d"
+	sudo useradd $u -c "$d"
 	echo $u account has been created. Please run passwd cmd to set passwd
 	return 0
 else
@@ -46,6 +47,7 @@ else
 fi
 }
 function fndisableuser {
+echo "==========Disable User========="
 echo "Please enter username to disable"
 read u
 grep -q $u /etc/passwd
@@ -71,5 +73,12 @@ else
 fi
 }
 function fndisbleusermore90 {
-lastlog -n 90 | tail -n+2 | awk '{print $1}' | xargs -I{} usermod -L {}
+echo "===========Disable User > 90==========="
+	lastlog -n 90 | tail -n+2 | awk '{print $1}' | xargs -I{} usermod -L {}
+	if [[ $? = 0 ]]
+	then
+		echo "Success!!"
+	else
+		echo "Failed"
+	fi
 }

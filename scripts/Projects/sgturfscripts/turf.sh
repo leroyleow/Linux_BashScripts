@@ -76,6 +76,12 @@ LOGMENU=(1:listxdaysapachelogs:List_X_Days_Apache_Logs
 	2:listxdayslumenlogs:List_X_Days_Lumen_Logs
 	3:listxdayslogs:List_X_Days_Logs_In_Directories)
 
+DISKMENU=(1:List_Disks_Above_Threshold:a_utility_to_find_disks_above_threshold
+	2:Main_Menu:main_menu)
+
+MISCMENU=(1:Password_Generator:a_utility_to_generate_5_random_password
+	2:Main_Menu:main_menu)
+
 #setting frequent stings
 	YNYES="("$CYS"y"$CE"/"$CYS"n"$CE")("$CYS"Enter"$CE"=yes)"
 	YNNO="("$YS"y"$CE"/"$YS"n"$CE")("$YS"Enter"$CE"=no)"
@@ -90,6 +96,7 @@ LOGMENU=(1:listxdaysapachelogs:List_X_Days_Apache_Logs
 	
 ############FUNCTIONS REFERENCE###############
 source $MAINPATH/userfunctions.sh
+source $MAINPATH/miscfunctions.sh
 
 ############MISC FUNCTIONS###############
 function fn_latest_changelog {
@@ -158,7 +165,6 @@ function main_options {
 	case $1 in
 		1)
 		build_menu "User Tools" ${USERMENU[@]}
-		echo -e $CWHS$CE
 		read -p "Enter a number: " CHOICE
 		user_options $CHOICE
 		;;
@@ -166,7 +172,9 @@ function main_options {
 		echo 'File Utilities'
 		;;
 		3)
-		echo 'Disk Utilities'
+		build_menu "Disk Tools" ${DISKMENU[@]}
+		read -p "Enter a number: " CHOICE
+		user_options $CHOICE
 		;;
 		4)
 		echo 'Application Log Tools'
@@ -178,7 +186,9 @@ function main_options {
 		echo 'Website Test'
 		;;
 		7)
-		echo 'Misc Tools'
+		build_menu "MISC Tools" ${MISCMENU[@]}
+		read -p "Enter a number: " CHOICE
+		msc_options $CHOICE
 		;;
 		0)
 		echo 'Exiting'
@@ -206,11 +216,38 @@ function user_options {
 		echo invalid choice
 	fi
 	
-	echo -e $CHW$EC
+	echo -e $CWHS$CE
 	build_menu "User Tools" ${USERMENU[@]}
 	read -p "Entere a number: " CHOICE
 	user_options $CHOICE	
 		
+}
+function disk_options{
+	if [ $1 = 1 ]
+	then
+	elif [ $1 = 2 ]
+	then
+	else
+
+	fi
+}
+function msc_options {
+	if [[ $1 = 1 ]] 
+	then
+		fngeneratepassword5 2> /dev/null
+	elif [[ $1 = 2 ]]
+	then
+		build_3col_menu "MAIN Menu" ${MAINMENU[@]}
+		read -p 'Enter a number:' CHOICE
+		main_options $CHOICE
+	else
+		echo invalid choice
+	fi
+
+	echo -e $CWHS$CE
+	build_menu "Misc Tools" ${MISCMENU[@]}
+	read -p "Enter a number: " CHOICE
+	msc_options $CHOICE
 }
 #------------------- Main Code --------------------------
 fn_banner
