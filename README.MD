@@ -75,3 +75,7 @@ Scripts listed here are so call helper functions in programming world
 
 </ul>
 </details>
+
+
+### Resource
+* To generate awesome banner go to <a href="http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=SGTurF%20Scripts">ANSI Shadow</a>
